@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>hbase的应用 | 李国帅的个人博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="李国帅的个人博客" />
+  
+  <meta name="description" content="##关于MVC的一些简介##hbase是一个开源的非关系的可伸缩的分布式数据库，他是面向列的，并适合于存储超大型松散数据，Hbase实用于实时，随机对Big数据进行读写操作的业务环境，下来主要我在做关于民航可视化及其预测方面的一些问题 Hbase配置前提是要安装完hadoop，默认一般是在namenode上进行1.修改conf/hbase-env.sh,添加关于jdk的支持123export JA">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hbase的应用">
+<meta property="og:url" content="http://liguoshuai.cn/2017/09/21/关于hbase的应用/index.html">
+<meta property="og:site_name" content="李国帅的个人博客">
+<meta property="og:description" content="##关于MVC的一些简介##hbase是一个开源的非关系的可伸缩的分布式数据库，他是面向列的，并适合于存储超大型松散数据，Hbase实用于实时，随机对Big数据进行读写操作的业务环境，下来主要我在做关于民航可视化及其预测方面的一些问题 Hbase配置前提是要安装完hadoop，默认一般是在namenode上进行1.修改conf/hbase-env.sh,添加关于jdk的支持123export JA">
+<meta property="og:updated_time" content="2017-09-21T14:52:56.881Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="hbase的应用">
+<meta name="twitter:description" content="##关于MVC的一些简介##hbase是一个开源的非关系的可伸缩的分布式数据库，他是面向列的，并适合于存储超大型松散数据，Hbase实用于实时，随机对Big数据进行读写操作的业务环境，下来主要我在做关于民航可视化及其预测方面的一些问题 Hbase配置前提是要安装完hadoop，默认一般是在namenode上进行1.修改conf/hbase-env.sh,添加关于jdk的支持123export JA">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+
+  
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "//hm.baidu.com/hm.js?true";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+
+  
+
+</head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">李国帅的博客</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>首页</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>活动</span>
+                    </a>
+                    
+                    <a  href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>关于我</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        李国帅的博客
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        一个专注 WEB 开发的技术博客
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="Github" target="_blank" href="//github.com/2300285692">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-关于hbase的应用" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      hbase的应用
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2017-09-21
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <p>##关于MVC的一些简介##<br>hbase是一个开源的非关系的可伸缩的分布式数据库，他是面向列的，并适合于存储超大型松散数据，Hbase实用于实时，随机对Big数据进行读写操作的业务环境，下来主要我在做关于民航可视化及其预测方面的一些问题</p>
+<p><strong>Hbase配置</strong><br>前提是要安装完hadoop，默认一般是在namenode上进行<br><em>1.修改conf/hbase-env.sh,添加关于jdk的支持</em><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">export JAVA_HOME=/usr/linux/jdk</div><div class="line">export HBASE_MANAGES_ZK=true </div><div class="line">export HBASE_LOG_DIR=/data/logs/hbase</div></pre></td></tr></table></figure></p>
+<p><em>2.修改conf/hbase-site.xml</em><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">&lt;property&gt; </div><div class="line">&lt;name&gt;hbase.rootdir&lt;/name&gt; </div><div class="line">&lt;value&gt;hdfs://master:9000/hbase&lt;/value&gt; </div><div class="line">&lt;/property&gt; </div><div class="line">&lt;property&gt; </div><div class="line">&lt;name&gt;hbase.cluster.distributed&lt;/name&gt; </div><div class="line">&lt;value&gt;true&lt;/value&gt; </div><div class="line">&lt;/property&gt; </div><div class="line">&lt;property&gt; </div><div class="line">&lt;name&gt;hbase.master&lt;/name&gt; </div><div class="line">&lt;value&gt;hdfs://master:60000&lt;/value&gt; </div><div class="line">&lt;/property&gt; </div><div class="line"></div><div class="line">&lt;property&gt; </div><div class="line">&lt;name&gt;hbase.zookeeper.quorum&lt;/name&gt; </div><div class="line">&lt;value&gt;slave-001,slave-002,slave-003&lt;/value&gt; </div><div class="line">&lt;description&gt;Comma separated list of servers in the ZooKeeper Quorum. For example, &quot;host1.mydomain.com,host2.mydomain.com,host3.mydomain.com&quot;. By default this is set to localhost for local and pseudo-distributed modes of operation. For a fully-distributed setup, this should be set to a full list of ZooKeeper quorum servers. If HBASE_MANAGES_ZK is set in hbase-env.sh this is the list of servers which we will start/stop ZooKeeper on. &lt;/description&gt; </div><div class="line">&lt;/property&gt; </div><div class="line">&lt;property&gt; </div><div class="line">&lt;name&gt;hbase.zookeeper.property.dataDir&lt;/name&gt; </div><div class="line">&lt;value&gt;/data/work/zookeeper&lt;/value&gt; </div><div class="line">&lt;description&gt;Property from ZooKeeper&apos;s config zoo.cfg. The directory where the snapshot is stored. &lt;/description&gt; </div><div class="line">&lt;/property&gt;</div></pre></td></tr></table></figure></p>
+<p><em>3.修改hadoop的目录下的conf/hdfs-site.xml</em><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;property&gt; </div><div class="line">&lt;name&gt;dfs.datanode.max.xcievers&lt;/name&gt; </div><div class="line">&lt;value&gt;4096&lt;/value&gt; </div><div class="line">&lt;/property&gt;</div></pre></td></tr></table></figure></p>
+<p><em>4.修改conf/regionservers 将所有的datanode添加到这个文件，类似与hadoop中slaves文件</em> </p>
+<p><em>5.拷贝hbase到所有的节点</em><br><em>6. 启动hbase</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ ./bin/start-hbase.sh</div><div class="line">``` </div><div class="line">*7.如果直接在etc/profile文件里写入hbase的环*</div><div class="line">*境，直接从任何地方都可进入*</div><div class="line">*8.进入hbase*</div></pre></td></tr></table></figure>
+<p>hbase shell<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">**mysql数据和hbase的互倒问题**</div><div class="line">*1.将mysql数据导入hbase*</div><div class="line">在将mysql数据导入hbase的过程中，首先表中必须要有id，让其作为hbase数据的键值，其余作为列族</div><div class="line">比如建一个表</div></pre></td></tr></table></figure></p>
+<p>create ‘test’,’cf’<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">在导入的过程中首先装一个sqoop，将mysql连接包导入和base的lib文件下</div></pre></td></tr></table></figure></p>
+<p>sqoop import –connect jdbc:mysql://localhost:3306/result –table researchers –hbase-table test –column-family person –hbase-row-key id –hbase-create-table –username ‘root’ -P<br>```<br>上面的result为mysql数据库的名，resrarchers为表名，test为新建hbase的数据库名，关于hbase的一些具体操作可去官网查看</p>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2017年09月21日 22:52</p>
+        <p>原始链接： <a class="post-url" href="/2017/09/21/关于hbase的应用/" title="hbase的应用">http://liguoshuai.cn/2017/09/21/关于hbase的应用/</a></p>
+        <footer>
+            <a href="http://liguoshuai.cn">
+                <img src="/images/logo.png" alt="李国帅">
+                李国帅
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+    </div>
+    <footer class="article-footer">
+        <ul class="article-footer-menu">
+            
+            
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+
+<nav id="article-nav">
+  
+    <a href="/2017/09/21/mvc/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          MVC简介
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2017/09/20/githubPages/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">在github上搭建hexo的博客</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2017 李国帅<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "http://liguoshuai.cn",
+      animate: true,
+      isHome: false
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/hexo搭建个人网站/" style="font-size: 10px;">hexo搭建个人网站</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div id="mobile-header-menu-container">
+        <span class="title">Menu</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>首页</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>活动</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/about">
+                    <i class="fa fa-user"></i><span>关于我</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  <script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  <script src="/js/animate.js"></script>
+
+  </div>
+</body>
+</html>
